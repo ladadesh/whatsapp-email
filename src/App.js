@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import DataTable from './components/DataTable';
+import Header from './components/Header';
+import InputFileUpload from './components/Input';
 
 function App() {
+  const [finalData, setFinalData] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Header />
+       <InputFileUpload finalData={finalData}  setFinalData={setFinalData} />
+       {finalData?.length > 0 && 
+        <DataTable finalData={finalData} setFinalData={setFinalData} />
+       }
     </div>
   );
 }
